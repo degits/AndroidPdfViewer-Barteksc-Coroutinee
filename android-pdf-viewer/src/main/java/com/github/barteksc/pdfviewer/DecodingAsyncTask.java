@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/*
 package com.github.barteksc.pdfviewer;
+
 
 import android.os.AsyncTask;
 
@@ -53,9 +55,13 @@ class DecodingAsyncTask extends AsyncTask<Void, Void, Throwable> {
             PDFView pdfView = pdfViewReference.get();
             if (pdfView != null) {
                 PdfDocument pdfDocument = docSource.createDocument(pdfView.getContext(), pdfiumCore, password);
+                //! Create "PdfFile" using "pdfDocument" and "pdfiumcore"
                 pdfFile = new PdfFile(pdfiumCore, pdfDocument, pdfView.getPageFitPolicy(), getViewSize(pdfView),
                         userPages, pdfView.isSwipeVertical(), pdfView.getSpacingPx(), pdfView.isAutoSpacingEnabled(),
                         pdfView.isFitEachPage());
+                //!  ddd
+                System.out.println(pdfFile.getPagesCount());
+
                 return null;
             } else {
                 return new NullPointerException("pdfView == null");
@@ -90,3 +96,4 @@ class DecodingAsyncTask extends AsyncTask<Void, Void, Throwable> {
         cancelled = true;
     }
 }
+*/

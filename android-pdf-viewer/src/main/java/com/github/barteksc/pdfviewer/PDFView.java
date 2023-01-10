@@ -152,7 +152,7 @@ public class PDFView extends RelativeLayout {
     private State state = State.DEFAULT;
 
     /** Async task used during the loading phase to decode a PDF document */
-    private DecodingAsyncTask decodingAsyncTask;
+    private DecodingTask decodingTask;
 
     /** The thread {@link #renderingHandler} will run on */
     private HandlerThread renderingHandlerThread;
@@ -276,8 +276,10 @@ public class PDFView extends RelativeLayout {
 
         recycled = false;
         // Start decoding document
-        decodingAsyncTask = new DecodingAsyncTask(docSource, password, userPages, this, pdfiumCore);
-        decodingAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        //decodingAsyncTask = new DecodingAsyncTask(docSource, password, userPages, this, pdfiumCore);
+        //decodingAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        DecodingTask decodingTask = new DecodingTask(docSource, password, userPages, this, pdfiumCore);
+        decodingTask.execute();
     }
 
     /**
@@ -422,8 +424,8 @@ public class PDFView extends RelativeLayout {
             renderingHandler.stop();
             renderingHandler.removeMessages(RenderingHandler.MSG_RENDER_TASK);
         }
-        if (decodingAsyncTask != null) {
-            decodingAsyncTask.cancel(true);
+        if (decodingTask != null) {
+            decodingTask.cancel();
         }
 
         // Clear caches
@@ -749,6 +751,7 @@ public class PDFView extends RelativeLayout {
 
     /** Called when the PDF is loaded */
     void loadComplete(PdfFile pdfFile) {
+        System.out.println("Call loadComplete************************************************************************************");
         state = State.LOADED;
 
         this.pdfFile = pdfFile;

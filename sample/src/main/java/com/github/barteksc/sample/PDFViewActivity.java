@@ -33,7 +33,7 @@ public class PDFViewActivity extends AppCompatActivity {
 
 
         //   Layer - 03
-        pdfView.fromAsset("textbook.pdf")
+        pdfView.fromAsset("sample.pdf")
                 .defaultPage(10)
                 //.onPageChange(this)
                 .enableAnnotationRendering(true)
