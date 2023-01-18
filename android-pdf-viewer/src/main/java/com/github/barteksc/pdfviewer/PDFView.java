@@ -327,6 +327,7 @@ public class PDFView extends RelativeLayout {
         loadPages();
 
         if (scrollHandle != null && !documentFitsView()) {
+            //remove my custom code and keep original
             scrollHandle.setPageNum(currentPage + 1);
         }
 

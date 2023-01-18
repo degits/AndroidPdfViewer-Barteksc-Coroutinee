@@ -1,6 +1,8 @@
 package com.github.barteksc.sample;
 
+import android.app.ActionBar;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -20,8 +22,6 @@ public class PDFViewActivity extends AppCompatActivity {
 
     @Override
     public void setContentView(int layoutResID) {   //   R.layout.activity_main = int layoutResID
-
-
         //   Layer - 01
         super.setContentView(layoutResID);
 
@@ -29,17 +29,17 @@ public class PDFViewActivity extends AppCompatActivity {
 
 
         //   Layer - 02
-        pdfView.setBackgroundColor(Color.CYAN);//.LTGRAY);
+        pdfView.setBackgroundColor(Color.LTGRAY);
 
 
         //   Layer - 03
-        pdfView.fromAsset("sample.pdf")
-                .defaultPage(10)
+        pdfView.fromAsset("big.pdf")
+                //.defaultPage(1)
                 //.onPageChange(this)
                 .enableAnnotationRendering(true)
                 //.onLoad(this)
                 .scrollHandle(new DefaultScrollHandle(this))
-                .spacing(10) // in dp
+                .spacing(6) // in dp
                 //.onPageError(this)
                 .pageFitPolicy(FitPolicy.WIDTH)
                 .load();
